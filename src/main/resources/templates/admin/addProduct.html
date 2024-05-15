@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class="bg-gray">
+<section >
+    <div class="container p-5 mt-3">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card card-sh">
+                    <div class="card-header text-center fs-4">Thêm mới sản phẩm</div>
+                    <th:block th:if="${session.errorMsg}">
+                        <p class="text-center text-danger fw-bold">[[${session.errorMsg}]]</p>
+                    </th:block>
+                    <div class="card-body">
+                        <form action="/admin/saveProduct" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label >Tiêu đề</label>
+                                <input type="text" name="title" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label >Mô tả</label>
+                                <textarea rows="3" name="description" class="form-control"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label >Loại sản phẩm</label>
+                                <select class="form-control" name="category">
+                                    <option value="">--chọn--</option>
+                                    <option th:each="c : ${categories}">[[${c.name}]]</option>
+
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label> Giá</label>
+                                <input type="number" name="price" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label >Upload Image</label>
+                                <input type="file" name="file" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Thêm mới</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
